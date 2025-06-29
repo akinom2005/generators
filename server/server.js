@@ -36,14 +36,14 @@ app.post('/booking', async (req, res) => {
   try {
     const booking = new Booking(req.body);
     await booking.save();
-
-    console.log('📥 Booking Saved:', booking);
-    res.send('<script>alert("Booking saved to database!"); window.history.back();</script>');
-  } catch (err) {
-    console.error('❌ Error saving booking:', err);
-    res.status(500).send('Something went wrong');
+    console.log('📥 Booking saved:', booking);
+    res.send('<script>alert("Booking saved successfully!"); window.history.back();</script>');
+  } catch (error) {
+    console.error('❌ Error saving booking:', error);
+    res.status(500).send(`Something went wrong: ${error.message}`);
   }
 });
+
 
 // ✅ Admin Route: View All Bookings
 app.get('/admin', async (req, res) => {
