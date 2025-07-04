@@ -1,13 +1,15 @@
-// Required Modules
+// ✅ Required Modules
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// ✅ Connect to MongoDB
-mongoose.connect('mongodb+srv://monikarajalingam:m1o2n3i4@powertech.kmn42fm.mongodb.net/powertech?retryWrites=true&w=majority')
-  .then(() => console.log('✅ Connected to MongoDB'))
+// ✅ MongoDB Connection URI
+const mongoURI = 'mongodb+srv://monikarajalingam:m1o2n3i4@monika.i4ozucl.mongodb.net/';
+
+mongoose.connect(mongoURI)
+  .then(() => console.log('✅ Connected to MongoDB!'))
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 // ✅ Define Booking Schema
@@ -43,7 +45,6 @@ app.post('/booking', async (req, res) => {
     res.status(500).send(`Something went wrong: ${error.message}`);
   }
 });
-
 
 // ✅ Admin Route: View All Bookings
 app.get('/admin', async (req, res) => {
